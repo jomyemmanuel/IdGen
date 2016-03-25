@@ -1,0 +1,35 @@
+body {
+  padding-top: 50px;
+}
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top {
+  border: 0;
+}
+
+
+.main {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+.main .page-header {
+  margin-top: 0;
+}
+
+.sub {
+  margin-top: 30px;
+}
+
+.pagination {
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+}

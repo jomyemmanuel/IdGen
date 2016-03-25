@@ -1,0 +1,1 @@
+function searchTable(e){var n=$(".tab");n.find("tr").each(function(n,t){var a=$(t).find("td");if(a.length>0){var i=!1;a.each(function(n,t){var a=new RegExp(e,"i");return a.test($(t).text())?(i=!0,!1):void 0}),1==i?$(t).show():$(t).hide()}})}$(document).ready(function(){$("#search").keyup(function(){searchTable($(this).val())})});

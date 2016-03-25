@@ -1,0 +1,46 @@
+body{
+	background: url(http://mymaplist.com/img/parallax/back.png);
+	background-color: #444;
+	background: url(http://mymaplist.com/img/parallax/pinlayer2.png),url(http://mymaplist.com/img/parallax/pinlayer1.png),url(http://mymaplist.com/img/parallax/back.png);    
+}
+
+.vertical-offset-100{
+	padding-top:100px;
+}
+
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+	background-color: #2F2F2F;
+}
+
+.grow {
+	transition: all .2s ease-in-out;
+}
+.grow:hover {
+	transform: scale(1.1);
+}
+.imgWrap {
+	position: relative;
+	height: 130px;
+	width: 130px;
+}
+
+.imgDescription {
+	position: absolute;
+	top: 90px;
+	bottom: 0;
+	left: 0;
+	right: 0px;
+	
+	color: #fff;
+
+
+	visibility: hidden;
+	opacity: 0;
+
+}
+
+
+.imgWrap:hover .imgDescription {
+	visibility: visible;
+	opacity: 1;
+}
