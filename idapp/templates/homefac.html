@@ -1,0 +1,62 @@
+<htmL>
+	<head>
+		<title>Faculty Page</title>
+		<style type="text/css">
+		div {
+			width: 200px;
+		}
+
+		h2 {
+			font: 400 40px/1.5 Helvetica, Verdana, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		li {
+			font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+			border-bottom: 1px solid #ccc;
+		}
+
+		li:last-child {
+			border: none;
+		}
+
+		li a {
+			text-decoration: none;
+			color: #000;
+			display: block;
+			width: 200px;
+
+			-webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+			-moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+			-o-transition: font-size 0.3s ease, background-color 0.3s ease;
+			-ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+			transition: font-size 0.3s ease, background-color 0.3s ease;
+		}
+
+		li a:hover {
+			font-size: 25px;
+			background: #f6f6f6;
+		}
+		</style>
+	</head>
+	<body>
+		<div>
+			<h2>Faculty</h2><br>
+			<ul>
+				<li><a href="{%url 'faculty' %}">FACULTY-REGISTRATION</a></li>
+				<li><a href="{%url 'listfac' %}">FACULTY LIST / EDIT</a></li>
+				<li><a href="{%url 'fiddesign' %}">FACULTY TEMPLATE SET</a></li>
+				<li><a href="{%url 'facdel' %}">INVALID FACULTY DELETION</a></li>
+				<li><a href="{%url 'genpdf1' %}">FACULTY PDF GENERATION</a></li>
+				<li><a href="{%url 'Main' %}">HOME</a></li>
+			</ul>
+		</div>
+	</body>
+	</html>

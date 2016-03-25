@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>	
+<head>
+	<title>Edit Faculty Details</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href='https://fonts.googleapis.com/css?family=Fira+Sans' rel='stylesheet' type='text/css'>
+	<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/static/css/demo.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="/static/css/style.css" media="all" />
+	<meta name="keywords" content="Edit Faculty Details For Id Card" />
+</head>
+
+<body>
+	{% extends "base.html" %}
+
+	{% block content %}
+	
+	    <div class="cont">
+   <header>
+    <h1 class="head">Edit Faculty: {{i.name}}</h1>
+  </header>       
+  <div  class="form" >
+
+	    <form id="contactform" method="post" action="{% url 'facsave' %}" enctype="multipart/form-data">{% csrf_token %}
+	        
+			<p class="contact">
+			<label for="name">Name:</label></p><input type="text" name="name" id="name" value="{{i.name}}"/> 
+			<p class="contact"><label for="designation">Designation:</label></p><input type="text" name="designation" id="designation" value="{{i.designation}}"/> 
+			
+			
+
+     <fieldset>
+       <label>Date of Birth:</label>
+       <label class="month">Month:
+        <select class="select-style" name="month">
+          <option value="{{i.dateofbirth.month}}">{{i.dateofbirth.month}}</option>
+          <option  value="01">January</option>
+          <option value="02">February</option>
+          <option value="03" >March</option>
+          <option value="04">April</option>
+          <option value="05">May</option>
+          <option value="06">June</option>
+          <option value="07">July</option>
+          <option value="08">August</option>
+          <option value="09">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12" >December</option>
+        </select>
+      </label> 
+       <label class="day">Day:
+        <select class="select-style" name="day">
+          <option value="{{i.dateofbirth.day}}">{{i.dateofbirth.day}}</option>
+          <option  value="01">01</option>
+          <option value="02">02</option>
+          <option value="03">03</option>
+          <option value="04">04</option>
+          <option value="05">05</option>
+          <option value="06">06</option>
+          <option value="07">07</option>
+          <option value="08">08</option>
+          <option value="09">09</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="15">15</option>
+          <option value="16">16</option>
+          <option value="17">17</option>
+          <option value="18">18</option>
+          <option value="19">19</option>
+          <option value="20">20</option>
+          <option value="21">21</option>
+          <option value="22">22</option>
+          <option value="23">23</option>
+          <option value="24">24</option>
+          <option value="25">25</option>
+          <option value="26">26</option>
+          <option value="27">27</option>
+          <option value="28">28</option>
+          <option value="29">29</option>
+          <option value="30">30</option>
+          <option value="31">31</option>
+        </select>
+      </label>   
+
+     <!-- <label>Day<input class="day" maxlength="2" name="day"  placeholder="Day" required=""></label> -->
+      <label>Year <input class="year" maxlength="4" name="year" placeholder="Year" value="{{i.dateofbirth.year}}" required=""></label>
+    </fieldset> 
+			
+			<p class="contact hide"><label for="dateofbirth">Date of Birth:</label></p><input type="text" name="dateofbirth" id="id_dateofbirth" value="{{i.dateofbirth.year}}-{{i.dateofbirth.month}}-{{i.dateofbirth.day}}"/> 
+			<p class="contact"><label for="bloodgroup">Blood Group:</label></p><input type="text" name="bloodgroup" id="bloodgroup" value="{{i.bloodgroup}}"/> 
+			<p class="contact"><label for="address">Address:</label></p><input type="text" name="address" id="address" value="{{i.address}}"/> 
+			<p class="contact"><label for="contact">Contact:</label></p><input type="text" name="contact" id="contact1" value="{{i.contact}}"/> 
+			 
+			<p class="contact"><label for="photo">Photo:</label></p><input type="file" name="photo" id="photo" value="{{i.photo.url}}"/> 
+      {% if i.photo %}
+        <span class="display contact"> Currently:<a href="{{i.photo.url}}" style=color:blue;> {{i.photo.url}} </a></span> <br><br>
+      {% endif %}
+			<input type="hidden" name="fac" id="range" value="{{i.pk}}">
+			<input class="buttom" name="submit" id="submit" value="Edit" type="submit" onclick="fun()">
+	    </form>
+
+</div>      
+</div>
+
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+function fun(){
+  document.getElementById("id_dateofbirth").value = 
+    document.getElementsByClassName("year")[0].value + '-' +
+    document.getElementsByClassName("select-style")[0].value + '-' +
+    document.getElementsByClassName("select-style")[1].value
+}
+
+$(window).bind('load', function () {
+  document.getElementById("id_dateofbirth").style.display="none";
+  document.getElementsByClassName("hide")[0].style.display="none";
+});
+</script>
+
+
+</body>
+
+</html>
+
+{% endblock %}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+
+  <title>ID Card Generation</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/css/cover.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+
+</head>
+
+<body>
+
+  <div class="site-wrapper">
+
+    <div class="site-wrapper-inner">
+
+      <div class="cover-container">
+
+        <div class="masthead clearfix">
+          <div class="inner">
+
+            <nav>
+              <ul class="nav masthead-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li class="dropdown">
+                  <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Student <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{%url 'student' %}">Registration</a></li>
+                    <li><a href="{%url 'liststud' %}">List</a></li>
+                    <li><a href="{%url 'siddesign' %}">Template</a></li>
+                    <li><a href="{%url 'studel' %}">Deletion</a></li>
+                    <li><a href="{%url 'studentpdfhome' %}">Generate Pdf</a></li>
+
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Teacher <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{%url 'faculty' %}">Registration</a></li>
+                    <li><a href="{%url 'listfac' %}">List</a></li>
+                    <li><a href="{%url 'fiddesign' %}">Template</a></li>
+                    <li><a href="{%url 'facdel' %}">Deletion</a></li>
+                    <li><a href="{%url 'genpdf1' %}">Generate Pdf</a></li>
+                  </ul>
+                </li>
+                {% if user.is_authenticated %}
+                  <li><a href="{%url 'logout' %}">Logout</a></li>
+                {% else %}
+                  <li><a href="{%url 'login' %}">Login</a></li>
+                {% endif %}
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <div class="inner cover">
+          <h1 class="cover-heading" style=font-size:40px;>IdGen</h1>
+          <p class="lead">Few clicks away from generating your id card</p>
+          <!--<p class="lead">
+            <a href="#" class="btn btn-lg btn-default">About us</a>
+          </p> -->
+          <div class="col-md-6">
+            <a href="{%url 'Mainstu' %}" class="imgWrap"> <img class="blah grow" src="/static/img/student.png" alt="Fireworks" style="width:130px;height:130px;right:50%"><p class="imgDescription">Student</p> </a>
+          </div>
+          <div class="col-md-6">
+            <a href="{%url 'Mainfac' %}" class="imgWrap"><img class="grow" src="/static/img/faculty.png" alt="Fireworks" style="width:130px;height:130px;right:50%"> <p class="imgDescription">Faculty</p> </a>
+          </div>
+        </div>
+
+        <div class="mastfoot">
+          <div class="inner">
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/static/js/jquery.js"></script>
+  <script src="/static/js/bootstrap.min.js"></script>
+  <script src="/static/js/main.js"></script>
+  <script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script>
+</body>
+</html>
