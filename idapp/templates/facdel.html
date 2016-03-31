@@ -27,9 +27,23 @@
 	{% extends "base.html" %}
 	
 	{% block content %}
+	  {% if messages %}
+	      {% for message in messages %}
+	        {% if message.tags == "success" %}
+	          <div class="alert alert-success fade in text-center">
+	            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	            {{ message }}
+	          </div>
+	        {% else %}
+	           <div class="alert alert-danger fade in text-center">
+	            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	            {{ message }}
+	          </div>
+	        {% endif %}
+	      {% endfor %}
+	  {% endif %}
 	<div class="container">
 		<h1>Delete Faculty</h1>
-		{% if error_message %}<p class="text-center"><strong>{{error_message}}</strong></p>{%endif%}
 		<form class="form-signin" action="{% url 'facdel' %}" method="post">{% csrf_token %}
 			<h2 class="form-signin-heading">Enter Name.</h2>
 			<label for="name" class="sr-only">Name of Faculty:</label>

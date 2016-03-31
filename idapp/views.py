@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
 from django.core.exceptions import ObjectDoesNotExist
@@ -65,15 +66,16 @@ def student(request):
       if form.is_valid():
         instance=form.save(commit=False)
         instance.save()
-        return render(request,'home.html') 
+        messages.success(request, 'Student Registered Succesfully.')
+        return HttpResponseRedirect('/student') 
       else:
-         errormsg="Form not valid"
          form=StudentForm()
-         context={"form":form,"error_message":errormsg}
+         context={"form":form}
+         messages.error(request, 'Form Not Valid.')
          return render(request,'studentform.html',context)
-     errormsg="Student Exists"
      form=StudentForm()
-     context={"form":form,"error_message":errormsg}
+     context={"form":form}
+     messages.error(request, 'Student Exists.')
      return render(request,'studentform.html',context)
    else:
     form=StudentForm()
@@ -90,15 +92,16 @@ def faculty1(request):
      if form.is_valid():
        instance=form.save(commit=False)
        instance.save()
-       return render(request,'home.html') 
+       messages.success(request, 'Faculty Registered Succesfully.')
+       return HttpResponseRedirect('/faculty') 
      else:
-       errormsg="Form not valid"
        form=FacultyForm()
-       context={"form":form,"error_message":errormsg}
+       context={"form":form}
+       messages.error(request, 'Form Not Valid.')
        return render(request,'facultyform.html',context)
-    errormsg="Faculty Exists"
     form=FacultyForm()
-    context={"form":form,"error_message":errormsg}
+    context={"form":form}
+    messages.error(request, 'Faculty Exists.')
     return render(request,'facultyform.html',context)
    else:
      #errormsg="Method not POST"
@@ -123,6 +126,9 @@ def studentpdfhome(request):
 
 @login_required(login_url='/login/')
 def generatepdf(request):
+	details=SDesign.objects.get()
+	if details is None:
+		return HttpResponseRedirect('/siddesign')
 	if request.method=="POST":
 		try:
 			smallest=100000000
@@ -145,7 +151,7 @@ def generatepdf(request):
 				b=largest
 				#print largest
 			for i in stud.objects.all():
-				if((int(i.admno.split('/')[0])>=smallest)and(int(i.admno.split('/')[0])<=largest)):
+				if((int(i.admno.split('/')[0])>=a)and(int(i.admno.split('/')[0])<=b)):
 					q.append(i)
 
 			if q.__len__()==0:
@@ -370,7 +376,7 @@ def rlab(request):
   details = SDesign.objects.get()
         #print str(details.bdesign.url)[2:]
   back = root + '/media/'+ str(details.bdesign)
-  pic = root + '/media/do_not_delete.jpg'
+  pic = root + '/static/img/do_not_delete.jpg'
   princi = root + '/media/' + str(details.psign)
   logoright = root+ '/media/' +  str(details.ilogo)
   logoleft = root + '/media/' +  str(details.clogo)
@@ -454,6 +460,7 @@ def editstud(request):
 			i.branch=request.POST['branch'+str(i.pk)]
 			i.rollno=request.POST['rollno'+str(i.pk)]
 			i.save()
+		messages.success(request, 'Details Updated.')
 		return HttpResponseRedirect('/liststud')
 	else:
 		return render(request,'home.html')        
@@ -487,6 +494,7 @@ def studsave(request):
 	       os.system('rm '+ root + q.photo.url)
 	       q.photo=request.FILES.get('photo')
 	   q.save()
+	   messages.success(request, 'Student Details Updated.')
 	   return HttpResponseRedirect('/liststud')
    else:
 	   return render(request,'home.html')
@@ -505,6 +513,7 @@ def facsave(request):
            os.system('rm '+ root + q.photo.url)
            q.photo=request.FILES.get('photo')
        q.save()
+       messages.success(request, 'Faculty Details Updated.')
        return HttpResponseRedirect('/listfac')
    else:
 	   return render(request,'home.html')
@@ -514,20 +523,15 @@ def delstud(request):
    if request.method=='POST':
       try:
          q=stud.objects.get(admno=request.POST['adm'])
-         adf=q.admno.split('/')[0]+'front.pdf'
-         adb=q.admno.split('/')[0]+'back.pdf'
          pho= root + q.photo.url
          q.delete()
          os.system('rm '+pho)
-         os.system('rm '+adb)
-         os.system('rm '+adf)
-         return render(response,'home.html')
       except ObjectDoesNotExist:
-         return render(request,'studel.html',{"error_message":"No match found!"})
-      except:
-         return render(request,'studel.html',{"error_message":"Deleted Succesfully"})
-      context={'q':q}
-      return render(request,'studel.html',context)
+      	 messages.error(request, 'No match found!')
+      	 return render(request,'studel.html')
+      else:
+      	 messages.success(request, 'Deleted Succesfully.')
+      	 return HttpResponseRedirect('/studel')
    else:
       return render(request,'studel.html')          
 
@@ -539,13 +543,12 @@ def delfac(request):
          pho= root + q.photo.url
          q.delete()
          os.system('rm '+pho)
-         return render(response,'home.html')
       except ObjectDoesNotExist:
-         return render(request,'facdel.html',{"error_message":"No match found!"})
-      except:
-         return render(request,'facdel.html',{"error_message":"Deleted Succesfully"})
-      context={'q':q}
-      return render(request,'facdel.html',context)
+         messages.error(request, 'No match found!')
+      	 return render(request,'facdel.html')
+      else:
+      	 messages.success(request, 'Deleted Succesfully.')
+      	 return HttpResponseRedirect('/facdel')
    else:
       return render(request,'facdel.html')          
 
@@ -615,7 +618,7 @@ def flab(request):
   details = FDesign.objects.get()
         #print str(details.bdesign.url)[2:]
   back = root + '/media/' + str(details.bdesign)
-  pic = root + '/media/do_not_delete.jpg'
+  pic = root + '/static/img/do_not_delete.jpg'
   princi = root + '/media/' + str(details.psign)
   logocentre = root + '/media/' + str(details.ilogo)
   barcode_value = "U617513CSB99"
@@ -679,6 +682,8 @@ def flab(request):
 @login_required(login_url='/login/')
 def genpdf1(request):
   details = FDesign.objects.get()
+  if details is None:
+  	return HttpResponseRedirect('/fiddesign')
   q=faculty.objects.all()
   if q.__len__()==0:
   	return render(request,'home.html')
@@ -757,11 +762,11 @@ def genpdf1(request):
 def liststud(request):
   queryset_list = stud.objects.all()
   if queryset_list.__len__()==0:
-   	return render(request,'home.html')
+   	messages.error(request, 'List is Empty!')
+	return render(request,'liststud.html')
 
   paginator = Paginator(queryset_list, 30) # Show 25 contacts per page
   page = request.GET.get('page')
-  print page
   try:
     queryset = paginator.page(page)
   except PageNotAnInteger:
@@ -781,7 +786,8 @@ def liststud(request):
 def listfac(request):
 	queryset_list = faculty.objects.all()
 	if queryset_list.__len__()==0:
-		return render(request,'home.html')
+		messages.error(request, 'List is Empty!')
+		return render(request,'listfac.html')
 
 	context = {
 		"object_list" : queryset_list
@@ -802,7 +808,9 @@ def singlestud(request):
         instance.save()
       else:
         form=SingleStud()
-        context={"form":form,"error_message":"Either "+request.POST['admno']+" exists or Form syntax is invalid"}
+        error_message="Either "+request.POST['admno']+" exists or Form syntax is invalid"
+        context={"form":form}
+        messages.error(request, error_message)
         return render(request,'singlestud.html',context)
       i=stud.objects.get(admno=request.POST['admno'])
       back = root +'/media/'+str(details.bdesign)
@@ -911,7 +919,6 @@ def singlestud(request):
       response = HttpResponse(open(root+"/pdf"+'/i.zip', 'rb').read(), content_type='application/zip')
       response['Content-Disposition'] = 'attachment; filename=single.zip'
       return response
-      return render(request,'home.html') 
   else:
     form=SingleStud()
     return render(request,'singlestud.html',{'form':form})

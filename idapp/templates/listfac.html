@@ -24,6 +24,21 @@
 	{% extends "base.html" %}
 	
 	{% block content %}
+	  {% if messages %}
+	      {% for message in messages %}
+	        {% if message.tags == "success" %}
+	          <div class="alert alert-success fade in text-center">
+	            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	            {{ message }}
+	          </div>
+	        {% else %}
+	           <div class="alert alert-danger fade in text-center">
+	            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	            {{ message }}
+	          </div>
+	        {% endif %}
+	      {% endfor %}
+	  {% endif %}
 	
 		<div class="container-fluid">
 			<div class="row">

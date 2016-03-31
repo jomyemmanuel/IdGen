@@ -16,13 +16,27 @@
   {% extends "base.html" %}
 
   {% block content %}
+  {% if messages %}
+      {% for message in messages %}
+        {% if message.tags == "success" %}
+          <div class="alert alert-success fade in text-center">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{ message }}
+          </div>
+        {% else %}
+           <div class="alert alert-danger fade in text-center">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{ message }}
+          </div>
+        {% endif %}
+      {% endfor %}
+  {% endif %}
   <div class="cont">
    <header>
     <h1 class="head">Student Registration</h1>
   </header>       
   <div  class="form" >
   	{{ form.non_field_errors }}
-  	<h3 style=color:red;>{% if error_message %}<p><strong>{{error_message}}</strong></p>{%endif%} </h3>
     <form id="contactform" action="{% url 'student' %}" enctype="multipart/form-data" method="post">{% csrf_token %}
      <p class="contact"><label for="{{form.name.id_for_label}}">Name</label></p> 
      <input id="id_name" maxlength="200" name="name" type="text" required="" />
