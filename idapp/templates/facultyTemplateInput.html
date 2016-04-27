@@ -20,23 +20,23 @@
 
 			<div class="col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-2">
 
-				<form class="form-horizontal form" action="{% url 'fiddesign' %}" method="post" enctype='multipart/form-data'> {% csrf_token %}
+				<form class="form-horizontal form" action="{% url 'facultyTemplateInput' %}" method="post" enctype='multipart/form-data'> {% csrf_token %}
 					<fieldset>
 
 						<!-- Form Name -->
 						<legend>Edit Faculty Template</legend>
 						<!-- Select Basic -->
 						<div class="form-group">
-							<label class="col-md-2 control-label" for="{{form.college.id_for_label}}">College</label>  
+							<label class="col-md-2 control-label" for="{{form.collegeName.id_for_label}}">College</label>  
 							<div class="col-md-10">
-								<input id="id_college" name="college" type="text" placeholder="College Name" class="form-control input-md" value="{{i.college}}">
+								<input id="id_college" name="collegeName" type="text" placeholder="College Name" class="form-control input-md" value="{{i.collegeName}}">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-2 control-label" for="{{form.cfont.id_for_label}}">College Font</label>
+							<label class="col-md-2 control-label" for="{{form.collegeNameFont.id_for_label}}">College Font</label>
 							<div class="col-md-4">
-								<select id="id_cfont" name="cfont" class="form-control">
-									<option value="{{i.cfont}}">{{i.cfont}}</option>
+								<select id="id_cfont" name="collegeNameFont" class="form-control">
+									<option value="{{i.collegeNameFont}}">{{i.collegeNameFont}}</option>
 									<option value="Times-Roman">Times-Roman</option>
 									<option value="Times-Bold">Times-Bold</option>
 									<option value="Times-Italic">Times-Italic</option>
@@ -53,16 +53,16 @@
 									<option value="ZapfDingbats">ZapfDingbats</option>
 								</select>
 							</div>
-							<label class="col-md-2 control-label" for="{{form.cfontsize.id_for_label}}">College Font-Size</label>
+							<label class="col-md-2 control-label" for="{{form.collegeNameFontSize.id_for_label}}">College Font-Size</label>
 							<div class="col-md-4">
-								<input id="id_cfontsize" name="cfontsize" type="text" placeholder="Font-Size" class="form-control input-md" value="{{i.cfontsize}}">
+								<input id="id_cfontsize" name="collegeNameFontSize" type="text" placeholder="Font-Size" class="form-control input-md" value="{{i.collegeNameFontSize}}">
 								
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-2 control-label" for="{{form.addline1.id_for_label}}">Address Line 1</label>
+							<label class="col-md-2 control-label" for="{{form.addressLine1.id_for_label}}">Address Line 1</label>
 							<div class="col-md-10">
-								<input id="id_addline1" name="addline1" type="text" placeholder="Address Line 1" class="form-control input-md" value="{{i.addline1}}">
+								<input id="id_addline1" name="addressLine1" type="text" placeholder="Address Line 1" class="form-control input-md" value="{{i.addressLine1}}">
 							</div>
 						</div>
 						<div class="form-group">
@@ -92,34 +92,34 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-2 control-label" for="{{form.addline2.id_for_label}}">Address Line 2</label>
+							<label class="col-md-2 control-label" for="{{form.addressLine2.id_for_label}}">Address Line 2</label>
 							<div class="col-md-10">
-								<input id="id_addline2" name="addline2" type="text" placeholder="Address Line 2" class="form-control input-md" value="{{i.addline2}}">
+								<input id="id_addline2" name="addressLine2" type="text" placeholder="Address Line 2" class="form-control input-md" value="{{i.addressLine2}}">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-2 control-label" for="{{form.addline3.id_for_label}}">Address Line 3</label>
+							<label class="col-md-2 control-label" for="{{form.addressLine3.id_for_label}}">Address Line 3</label>
 							<div class="col-md-10">
-								<input id="id_addline3" name="addline3" type="text" placeholder="Address Line 3" class="form-control input-md" value="{{i.addline3}}">
+								<input id="id_addline3" name="addressLine3" type="text" placeholder="Address Line 3" class="form-control input-md" value="{{i.addressLine3}}">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-2 control-label" for="{{form.addline4.id_for_label}}">Address Line 4</label>
+							<label class="col-md-2 control-label" for="{{form.addressLine4.id_for_label}}">Address Line 4</label>
 							<div class="col-md-10">
-								<input id="id_addline4" name="addline4" type="text" placeholder="Address Line 4" class="form-control input-md" value="{{i.addline4}}">
+								<input id="id_addline4" name="addressLine4" type="text" placeholder="Address Line 4" class="form-control input-md" value="{{i.addressLine4}}">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-2 control-label" for="{{form.addline5.id_for_label}}">Address Line 5</label>
+							<label class="col-md-2 control-label" for="{{form.addressLine5.id_for_label}}">Address Line 5</label>
 							<div class="col-md-10">
-								<input id="id_addline5" name="addline5" type="text" placeholder="Address Line 5" class="form-control input-md" value="{{i.addline5}}">
+								<input id="id_addline5" name="addressLine5" type="text" placeholder="Address Line 5" class="form-control input-md" value="{{i.addressLine5}}">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-2 control-label" for="{{form.addline2to5font.id_for_label}}">Address Font</label>
+							<label class="col-md-2 control-label" for="{{form.addressLine2To5Font.id_for_label}}">Address Font</label>
 							<div class="col-md-4">
-								<select id="id_addline2to5font" name="addline2to5font" class="form-control">
-									<option value="{{i.addline2to5font}}">{{i.addline2to5font}}</option>
+								<select id="id_addline2to5font" name="addressLine2To5Font" class="form-control">
+									<option value="{{i.addressLine2To5Font}}">{{i.addressLine2To5Font}}</option>
 									<option value="Times-Roman">Times-Roman</option>
 									<option value="Times-Bold">Times-Bold</option>
 									<option value="Times-Italic">Times-Italic</option>
@@ -136,16 +136,16 @@
 									<option value="ZapfDingbats">ZapfDingbats</option>
 								</select>
 							</div>
-							<label class="col-md-2 control-label" for="{{form.addline2to5fontsize.id_for_label}}">Address Font-Size</label>
+							<label class="col-md-2 control-label" for="{{form.addressLine2To5FontSize.id_for_label}}">Address Font-Size</label>
 							<div class="col-md-4">
-								<input id="id_addline2to5fontsize" name="addline2to5fontsize" type="text" placeholder="Font-Size" class="form-control input-md" value="{{i.addline2to5fontsize}}">
+								<input id="id_addline2to5fontsize" name="addressLine2To5FontSize" type="text" placeholder="Font-Size" class="form-control input-md" value="{{i.addressLine2To5FontSize}}">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-2 control-label" for="{{form.detfont.id_for_label}}">Details Font</label>
+							<label class="col-md-2 control-label" for="{{form.detailsFont.id_for_label}}">Details Font</label>
 							<div class="col-md-4">
-								<select id="id_detfont" name="detfont" class="form-control">
-									<option value="{{i.detfont}}">{{i.detfont}}</option>
+								<select id="id_detfont" name="detailsFont" class="form-control">
+									<option value="{{i.detailsFont}}">{{i.detailsFont}}</option>
 									<option value="Times-Roman">Times-Roman</option>
 									<option value="Times-Bold">Times-Bold</option>
 									<option value="Times-Italic">Times-Italic</option>
@@ -162,25 +162,25 @@
 									<option value="ZapfDingbats">ZapfDingbats</option>
 								</select>
 							</div>
-							<label class="col-md-2 control-label" for="{{form.detfontsize.id_for_label}}">Details Font-Size</label>
+							<label class="col-md-2 control-label" for="{{form.detailsFontSize.id_for_label}}">Details Font-Size</label>
 							<div class="col-md-4">
-								<input id="id_detfontsize" name="detfontsize" type="text" placeholder="Font-Size" class="form-control input-md" value="{{i.detfontsize}}">
+								<input id="id_detfontsize" name="detailsFontSize" type="text" placeholder="Font-Size" class="form-control input-md" value="{{i.detailsFontSize}}">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-2 control-label" for="{{form.ilogo.id_for_label}}">Supervisor Logo</label>  
+							<label class="col-md-2 control-label" for="{{form.parentLogo.id_for_label}}">Supervisor Logo</label>  
 							<div class="col-md-4">
-								<input id="id_ilogo" name="ilogo" type="file" class="form-control input-md" value="{{i.ilogo}}" title="{{i.ilogo}}">
+								<input id="id_ilogo" name="parentLogo" type="file" class="form-control input-md" value="{{i.parentLogo}}" title="{{i.parentLogo}}">
 							</div>
-							<label class="col-md-2 control-label" for="{{form.psign.id_for_label}}">Principal's Sign</label>  
+							<label class="col-md-2 control-label" for="{{form.principalSign.id_for_label}}">Principal's Sign</label>  
 							<div class="col-md-4">
-								<input id="id_psign" name="psign" type="file" class="form-control input-md" value="{{i.psign}}" title="{{i.psign}}">
+								<input id="id_psign" name="principalSign" type="file" class="form-control input-md" value="{{i.principalSign}}" title="{{i.principalSign}}">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-2 control-label" for="{{form.bdesign.id_for_label}}">Background Design</label>  
+							<label class="col-md-2 control-label" for="{{form.backgroundDesign.id_for_label}}">Background Design</label>  
 							<div class="col-md-4">
-								<input id="id_bdesign" name="bdesign" type="file" class="form-control input-md" value="{{i.bdesign}}" title="{{i.bdesign}}">
+								<input id="id_bdesign" name="backgroundDesign" type="file" class="form-control input-md" value="{{i.backgroundDesign}}" title="{{i.backgroundDesign}}">
 							</div>
 						</div>
 

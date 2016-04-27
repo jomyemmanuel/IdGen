@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Registration</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <link href='https://fonts.googleapis.com/css?family=Fira+Sans' rel='stylesheet' type='text/css'>
+  <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/static/css/demo.css" media="all" />
+  <link rel="stylesheet" type="text/css" href="/static/css/style.css" media="all" />
+
+</head>
+
+<body>
+  {% extends "base.html" %}
+
+  {% block content %}
+  {% if messages %}
+      {% for message in messages %}
+        {% if message.tags == "success" %}
+          <div class="alert alert-success fade in text-center">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{ message }}
+          </div>
+        {% else %}
+           <div class="alert alert-danger fade in text-center">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{ message }}
+          </div>
+        {% endif %}
+      {% endfor %}
+  {% endif %}
+  <div class="cont">
+   <header>
+    <h1 class="head">Student Registration</h1>
+  </header>       
+  <div  class="form" >
+        <form id="contactform" action="{% url 'studentRegistration' %}" enctype="multipart/form-data" method="post">{% csrf_token %}
+           <p class="contact"><label for="{{form.name.id_for_label}}">Name*</label></p> 
+           <input id="id_name" maxlength="200" name="name" type="text" required="" />
+           <p class="contact"><label for="{{form.admissionNumber.id_for_label}}">Admission No.*</label></p> 
+           <input id="id_admissionNumber" maxlength="200" name="admissionNumber" type="text" required="" />
+
+           <p class="contact"><label for="{{form.typ.id_for_label}}">Type*</label></p> 
+           {{form.typ}}
+
+           <p class="hide"><label for="{{form.clss.id_for_label}}"></label> 
+           {{form.clss}}</p>
+
+           <p class="contact"><label for="{{form.course.id_for_label}}">Course*</label></p> 
+           {{form.course}}
+           <p class="contact"><label for="{{form.branch.id_for_label}}">Branch*</label></p> 
+           {{form.branch}}
+
+          <fieldset><label for="{{form.validtill.id_for_label}}">Valid Till*&nbsp  &nbsp &nbsp &nbsp&nbsp</label>
+          {{form.validtill}}</fieldset>
+
+          <fieldset><label for="{{form.dateofbirth.id_for_label}}">Date of Birth*&nbsp </label>
+          {{form.dateofbirth}}</fieldset>
+
+          <p class="contact"><label for="{{form.bloodgroup.id_for_label}}">Blood Group</label></p> 
+          {{form.bloodgroup}}
+
+          <p class="contact"><label for="{{form.address.id_for_label}}">Address*</label></p> 
+          <input id="id_address" maxlength="200" name="address" type="text" required="" />
+
+          <p class="contact"><label for="{{form.contact1.id_for_label}}">Contact No.1*</label></p> 
+          <input id="id_contact1" maxlength="10" name="contact1" type="text" required="" /> <br>
+
+          <p class="contact"><label for="{{form.contact2.id_for_label}}">Contact No.2</label></p> 
+          {{form.contact2}} <br>
+
+          <p class="contact"><label for="{{form.photo.id_for_label}}">Photo</label></p> 
+          {{form.photo}}<br>
+
+          <input class="buttom" name="submit" id="submit" value="Register" type="submit"> 
+          <input class="buttom report" name="submit" id="submit" value="Generate Report" type="submit" onClick="fun()"> 
+          <a href="/studentRegistration/"><button class="buttom btn btn-primary new" type="button">New</button></a>
+        </form> 
+     
+  </div>      
+</div>
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  function fun(){
+    var action = {% url 'report' %}
+    $("#contactform").attr("action", action);
+
+  }
+</script>
+</body>
+
+</html>
+
+{% endblock %}

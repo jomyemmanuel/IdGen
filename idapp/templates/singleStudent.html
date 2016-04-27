@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Registration</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <link href='https://fonts.googleapis.com/css?family=Fira+Sans' rel='stylesheet' type='text/css'>
+  <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/static/css/demo.css" media="all" />
+  <link rel="stylesheet" type="text/css" href="/static/css/style.css" media="all" />
+
+</head>
+
+<body>
+  {% extends "base.html" %}
+
+  {% block content %}
+  {% if messages %}
+      {% for message in messages %}
+        {% if message.tags == "success" %}
+          <div class="alert alert-success fade in text-center">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{ message }}
+          </div>
+        {% else %}
+           <div class="alert alert-danger fade in text-center">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{ message }}
+          </div>
+        {% endif %}
+      {% endfor %}
+  {% endif %}
+  <div class="cont">
+   <header>
+    <h1 class="head">Student Registration</h1>
+  </header>       
+  <div  class="form" >
+  	{{ form.non_field_errors }}
+    <form id="contactform" action="{% url 'singleStudent' %}" enctype="multipart/form-data" method="post">{% csrf_token %}
+     <p class="contact"><label for="{{form.name.id_for_label}}">Name*</label></p> 
+           {{form.name}}
+           <p class="contact"><label for="{{form.admissionNumber.id_for_label}}">Admission No.*</label></p> 
+           {{form.admissionNumber}}
+
+           <p class="contact"><label for="{{form.typ.id_for_label}}">Type*</label></p> 
+           {{form.typ}}
+
+           <p class="contact"><label for="{{form.course.id_for_label}}">Course*</label></p> 
+           {{form.course}}
+           <p class="contact"><label for="{{form.branch.id_for_label}}">Branch*</label></p> 
+           {{form.branch}}
+
+           <p class="contact"><label for="{{form.clss.id_for_label}}">Class</label></p> 
+           {{form.clss}} 
+
+           <p class="contact"><label for="{{form.rollno.id_for_label}}">Roll No.</label></p> 
+           <input id="id_rollno" maxlength="5" name="rollno" type="text" required="" />
+          
+          <fieldset><label for="{{form.validtill.id_for_label}}">Valid Till*&nbsp  &nbsp &nbsp &nbsp&nbsp</label>
+          {{form.validtill}}</fieldset>
+
+          <fieldset><label for="{{form.dateofbirth.id_for_label}}">Date of Birth*&nbsp </label>
+          {{form.dateofbirth}}</fieldset>
+
+          <p class="contact"><label for="{{form.bloodgroup.id_for_label}}">Blood Group</label></p> 
+          {{form.bloodgroup}}
+
+          <p class="contact"><label for="{{form.address.id_for_label}}">Address*</label></p> 
+          {{form.address}}
+
+          <p class="contact"><label for="{{form.contact1.id_for_label}}">Contact No.1*</label></p> 
+          {{form.contact1}} <br>
+
+          <p class="contact"><label for="{{form.contact2.id_for_label}}">Contact No.2</label></p> 
+          {{form.contact2}} <br>
+
+          <p class="contact"><label for="{{form.photo.id_for_label}}">Photo</label></p> 
+          {{form.photo}}<br>
+
+    <input class="buttom" name="submit" id="submit" value="Generate PDF" type="submit">    
+   </form> 
+  </div>      
+</div>
+
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+
+{% endblock %}

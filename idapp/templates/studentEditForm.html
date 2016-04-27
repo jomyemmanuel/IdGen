@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>  
+<head>
+  <title>Edit Student Details</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='https://fonts.googleapis.com/css?family=Fira+Sans' rel='stylesheet' type='text/css'>
+  <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/static/css/demo.css" media="all" />
+  <link rel="stylesheet" type="text/css" href="/static/css/style.css" media="all" />
+  <meta name="keywords" content="Edit Student Details For Id Card" />
+</head>
+
+<body>
+  {% extends "base.html" %}
+
+  {% block content %}
+  
+      <div class="cont">
+   <header>
+    <h1 class="head">Edit Student: {{name}}</h1>
+  </header>       
+  <div  class="form" >
+
+      <form id="contactform" method="post" action="{% url 'studentSave' %}" enctype="multipart/form-data">{% csrf_token %}
+          
+      <p class="contact"><label for="name">Name*</label></p>{{form.name}}
+      <p class="contact"><label for="admissionNumber">Admission Number*</label></p>{{form.admissionNumber}}
+      <p class="contact"><label for="typ">Type*</label></p>{{form.typ}}
+      <p class="contact"><label for="course">Course*</label></p>{{form.course}}
+      <p class="contact"><label for="branch">Branch*</label></p>{{form.branch}}
+      <p class="contact"><label for="clss">Class:</label></p>{{form.clss}}
+      <p class="contact"><label for="rollno">Roll No:</label></p><input type="text" name="rollno" id="rollno" value="{{instance.rollno}}"/>
+      <fieldset><label for="validtill">Valid Till*&nbsp  &nbsp &nbsp &nbsp&nbsp</label>{{form.validtill}}</fieldset>
+      <fieldset><label for="dateofbirth">Date of Birth*&nbsp </label>{{form.dateofbirth}}</fieldset>
+      <p class="contact"><label for="bloodgroup">Blood Group</label></p>{{form.bloodgroup}}
+      <p class="contact"><label for="address">Address*</label></p>{{form.address}}
+      <p class="contact"><label for="contact1">Contact 1*</label></p>{{form.contact1}}
+      <p class="contact"><label for="contact2">Contact 2</label></p>{{form.contact2}}
+      <p class="contact"><label for="barcode_serial">Barcode Serial:</label></p><input type="text" name="barcode_serial" id="barcode_serial" value="{{instance.barcode_serial}}"/>
+      <p class="contact"><label for="photo">Photo:</label></p>{{form.photo}}
+      <input type="hidden" name="stu" id="range" value="{{instance.pk}}">
+      <input class="buttom" name="submit" id="submit" value="Edit" type="submit" onclick="fun()">
+      </form>
+
+</div>      
+</div>
+
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+
+{% endblock %}

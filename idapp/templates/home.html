@@ -35,22 +35,20 @@
                 <li class="dropdown">
                   <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Student <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="{%url 'student' %}">Registration</a></li>
-                    <li><a href="{%url 'liststud' %}">List</a></li>
-                    <li><a href="{%url 'siddesign' %}">Template</a></li>
-                    <li><a href="{%url 'studel' %}">Deletion</a></li>
-                    <li><a href="{%url 'studentpdfhome' %}">Generate Pdf</a></li>
+                    <li><a href="{%url 'studentRegistration' %}">Registration</a></li>
+                    <li><a href="{%url 'studentList' %}">List</a></li>
+                    <li><a href="{%url 'studentTemplateInput' %}">Template</a></li>
+                    <li><a href="{%url 'studentPdfHome' %}">Generate Pdf</a></li>
 
                   </ul>
                 </li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Teacher <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="{%url 'faculty' %}">Registration</a></li>
-                    <li><a href="{%url 'listfac' %}">List</a></li>
-                    <li><a href="{%url 'fiddesign' %}">Template</a></li>
-                    <li><a href="{%url 'facdel' %}">Deletion</a></li>
-                    <li><a href="{%url 'genpdf1' %}">Generate Pdf</a></li>
+                    <li><a href="{%url 'facultyRegistration' %}">Registration</a></li>
+                    <li><a href="{%url 'facultyList' %}">List</a></li>
+                    <li><a href="{%url 'facultyTemplateInput' %}">Template</a></li>
+                    <li><a href="{%url 'facultyPdf' %}">Generate Pdf</a></li>
                   </ul>
                 </li>
                 {% if user.is_authenticated %}
@@ -70,10 +68,10 @@
             <a href="#" class="btn btn-lg btn-default">About us</a>
           </p> -->
           <div class="col-md-6">
-            <a href="{%url 'Mainstu' %}" class="imgWrap"> <img class="blah grow" src="/static/img/student.png" alt="Fireworks" style="width:130px;height:130px;right:50%"><p class="imgDescription">Student</p> </a>
+            <a href="{%url 'studentHome' %}" class="imgWrap"> <img class="blah grow" src="/static/img/student.png" alt="Fireworks" style="width:130px;height:130px;right:50%"><p class="imgDescription">Student</p> </a>
           </div>
           <div class="col-md-6">
-            <a href="{%url 'Mainfac' %}" class="imgWrap"><img class="grow" src="/static/img/faculty.png" alt="Fireworks" style="width:130px;height:130px;right:50%"> <p class="imgDescription">Faculty</p> </a>
+            <a href="{%url 'facultyHome' %}" class="imgWrap"><img class="grow" src="/static/img/faculty.png" alt="Fireworks" style="width:130px;height:130px;right:50%"> <p class="imgDescription">Faculty</p> </a>
           </div>
         </div>
 

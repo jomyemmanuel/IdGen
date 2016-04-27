@@ -2,20 +2,23 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-class stud(models.Model):
+class student(models.Model):
   name=models.CharField(max_length=200)
   course=models.CharField(max_length=200)
   branch=models.CharField(max_length=200)
-  admno=models.CharField(max_length=200,unique=True)
+  typ = models.CharField(max_length=10)
+  admissionNumber=models.CharField(max_length=200,unique=True)
   validtill=models.DateField()
   dateofbirth=models.DateField()
-  bloodgroup=models.CharField(max_length=200)
+  bloodgroup=models.CharField(max_length=200,blank=True,null=True)
   address=models.CharField(max_length=200)
   contact1=models.CharField(max_length=10)
   contact2=models.CharField(max_length=10,blank=True,null=True)
-  photo=models.ImageField(upload_to="student")
+  photo=models.ImageField(upload_to="student",blank=True,null=True)
   clss=models.CharField(max_length=5,blank=True,null=True)
   rollno=models.CharField(max_length=5,blank=True,null=True)
+  barcode_serial=models.CharField(max_length=200,unique=True,null=True)
+  
   def __str__(self):
     return self.name
 
@@ -27,55 +30,56 @@ class faculty(models.Model):
   address=models.CharField(max_length=200)
   contact=models.CharField(max_length=10)
   photo=models.ImageField(upload_to="faculty")
+  barcode_serial=models.CharField(max_length=200,unique=True)
   
   def __str__(self):
      return self.name
 
-class SDesign(models.Model):
-  college = models.CharField(max_length=120)
-  cfont = models.CharField(max_length=120)
-  cfontsize = models.IntegerField()
-  addline1 = models.CharField(max_length=120)
-  addline2 = models.CharField(max_length=120)
-  addline3 = models.CharField(max_length=120)
-  addline4 = models.CharField(max_length=120)
-  addline5 = models.CharField(max_length=120)
-  addline1to5font = models.CharField(max_length=120)
-  addline1to5fontsize = models.IntegerField()
-  detfont = models.CharField(max_length=120)
-  detfontsize = models.IntegerField()
-  clogo = models.ImageField(upload_to="template_student", null=True, blank=True)
-  ilogo = models.ImageField(upload_to="template_student", null=True, blank=True)
-  psign = models.ImageField(upload_to="template_student", null=True, blank=True)
-  bdesign = models.ImageField(upload_to="template_student", null=True, blank=True)
+class studentTemplateDesign(models.Model):
+  collegeName = models.CharField(max_length=120)
+  collegeNameFont = models.CharField(max_length=120)
+  collegeNameFontSize = models.IntegerField()
+  addressLine1 = models.CharField(max_length=120)
+  addressLine2 = models.CharField(max_length=120)
+  addressLine3 = models.CharField(max_length=120)
+  addressLine4 = models.CharField(max_length=120)
+  addressLine5 = models.CharField(max_length=120)
+  addressLine1To5Font = models.CharField(max_length=120)
+  addressLine1To5FontSize = models.IntegerField()
+  detailsFont = models.CharField(max_length=120)
+  detailsFontSize = models.IntegerField()
+  collegeLogo = models.ImageField(upload_to="template_student", null=True, blank=True)
+  parentLogo = models.ImageField(upload_to="template_student", null=True, blank=True)
+  principalSign = models.ImageField(upload_to="template_student", null=True, blank=True)
+  backgroundDesign = models.ImageField(upload_to="template_student", null=True, blank=True)
   
   def __unicode__(self):
-    return self.college
+    return self.collegeName
   def __str__(self):
-    return self.college
+    return self.collegeName
 
-class FDesign(models.Model):
-  college = models.CharField(max_length=120)
-  cfont = models.CharField(max_length=120)
-  cfontsize = models.IntegerField()
-  addline1 = models.CharField(max_length=120)
+class facultyTemplateDesign(models.Model):
+  collegeName = models.CharField(max_length=120)
+  collegeNameFont = models.CharField(max_length=120)
+  collegeNameFontSize = models.IntegerField()
+  addressLine1 = models.CharField(max_length=120)
   addline1font = models.CharField(max_length=120)
   addline1fontsize = models.IntegerField()
-  addline2 = models.CharField(max_length=120)
-  addline3 = models.CharField(max_length=120)
-  addline4 = models.CharField(max_length=120)
-  addline5 = models.CharField(max_length=120)
-  addline2to5font = models.CharField(max_length=120)
-  addline2to5fontsize = models.IntegerField()
-  detfont = models.CharField(max_length=120)
-  detfontsize = models.IntegerField()
-  ilogo = models.ImageField(upload_to="template_faculty", null=True, blank=True)
-  psign = models.ImageField(upload_to="template_faculty", null=True, blank=True)
-  bdesign = models.ImageField(upload_to="template_faculty", null=True, blank=True)
+  addressLine2 = models.CharField(max_length=120)
+  addressLine3 = models.CharField(max_length=120)
+  addressLine4 = models.CharField(max_length=120)
+  addressLine5 = models.CharField(max_length=120)
+  addressLine2To5Font = models.CharField(max_length=120)
+  addressLine2To5FontSize = models.IntegerField()
+  detailsFont = models.CharField(max_length=120)
+  detailsFontSize = models.IntegerField()
+  parentLogo = models.ImageField(upload_to="template_faculty", null=True, blank=True)
+  principalSign = models.ImageField(upload_to="template_faculty", null=True, blank=True)
+  backgroundDesign = models.ImageField(upload_to="template_faculty", null=True, blank=True)
   
   def __unicode__(self):
-    return self.college
+    return self.collegeName
   def __str__(self):
-    return self.college
+    return self.collegeName
 
 

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="../../favicon.ico">
+
+	<title>Student List</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+	<link href="/static/css/dashboard.css" rel="stylesheet">
+	<style type="text/css">
+}
+	</style>
+
+</head>
+
+<body>
+
+	{% extends "base.html" %}
+	
+	{% block content %}
+	  {% if messages %}
+	      {% for message in messages %}
+	        {% if message.tags == "success" %}
+	          <div class="alert alert-success fade in text-center">
+	            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	            {{ message }}
+	          </div>
+	        {% else %}
+	           <div class="alert alert-danger fade in text-center">
+	            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	            {{ message }}
+	          </div>
+	        {% endif %}
+	      {% endfor %}
+	  {% endif %}
+	<form id="form1" action="{%url 'studentListSave' %}" method="post">{% csrf_token %}
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12 col-sm-12 main">
+					<div class="col-md-12 page-header col-sm-12">
+						<div class="col-md-6 col-sm-6">
+							<h1>Student List</h1>
+						</div>
+						<div class="col-md-2 col-md-offset-4 col-sm-2 col-sm-offset-4 sub">
+							<input class="btn btn-success" type='submit' value='Save Changes'/>
+						</div>
+					</div>
+					<div>
+						<input type="text" class="form-control" id="search"  placeholder="Search..."> <br>
+					</div>
+
+					<div class="table-responsive">
+						<table class="table table-striped tab">
+							<thead class="thead-inverse">
+								<tr>
+									<th>Admission No.</th>
+									<th>Name</th>
+									<th>Type</th>
+									<th>Branch</th>
+									<th>Class</th>
+									<th>Roll No.</th>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
+
+							<tbody>
+								{%for i in object_list%}
+								<tr data-id="{{i.id}}">
+									<td>{{i.admissionNumber}}</td>
+									<td>{{i.name}}</td>
+									<td>{{i.typ}}</td>
+									<td>{{i.branch}}</td>
+									<td><label for="clss{{i.pk}}"></label><input type="text" name="clss{{i.pk}}" id="clss{{i.pk}}" value="{{i.clss}}"/></td>
+									<td><label for="rollno{{i.pk}}"></label><input type="text" name="rollno{{i.pk}}" id="rollno{{i.pk}}" value="{{i.rollno}}"/></td>
+									<td><a href="/studentEdit/{{i.id}}"><button class="btn btn-primary" type="button">Edit</button></a></td>
+									<td><button name="adm" class="btnDelete btn btn-danger">Delete</button></td>
+								</tr>
+								{%endfor%}
+							</tbody>
+						</table>
+					</div>
+					<div class="pagination">
+						<span class="step-links">
+							{% if object_list.has_previous %}
+							<a href="?page={{ object_list.previous_page_number }}">previous</a>
+							{% endif %}
+
+							<span class="current">
+								Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+							</span>
+
+							{% if object_list.has_next %}
+							<a href="?page={{ object_list.next_page_number }}">next</a>
+							{% endif %}
+						</span>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</form>
+
+	<div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                 <h3 class="modal-title" id="myModalLabel">Warning!</h3>
+	            </div>
+	            <div class="modal-body">
+	            	<form id="form2" action="{%url 'studentDelete' %}" method="post">{% csrf_token %}
+	            		<label for="adm"></label>
+	            		<input class="hide" id="adm" type="text" name="adm" value="2">
+	            	</form>
+	                 <h4> Are you sure you want to DELETE?</h4>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="submit" name="adm" class="btn btn-danger" id="delete" >Yes</button>
+	                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+  
+
+	    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/search.js"></script>
+    <script type="text/javascript">
+
+	$('button.btnDelete').on('click', function(e){
+	    e.preventDefault();
+	    var id = $(this).closest('tr').data('id');
+	    $('#confirm').data('id', id).modal('show');
+	});
+
+	$("#delete").click(function () {
+	    var id = $('#confirm').data('id');
+	    $('input[name="adm"]')
+	    	.attr("value", $('[data-id=' + id + ']')
+	    	.closest('tr').find('td:eq(0)').text());
+	    $("#form2").submit();
+	    $('#confirm').modal('hide');
+	});
+    </script>
+</body>
+</html>
+
+{% endblock %}

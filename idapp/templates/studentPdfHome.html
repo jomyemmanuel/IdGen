@@ -18,6 +18,7 @@
 	h1 {
 		text-align: center;
 		margin-bottom: 20px;
+		margin-top: 50px;
 	}
 	</style>
 
@@ -31,18 +32,18 @@
 	<div class="container">
 		<h1>Student PDF Generation</h1>
 		{% if error_message %}<p><strong>{{error_message}}</strong></p>{%endif%}
-		<form class="form-signin" action="{% url 'genpdf' %}"  method="post">{% csrf_token %}
-			<h2 class="form-signin-heading">Enter Range</h2>
+		<form class="form-signin" action="{% url 'studentPdf' %}"  method="post">{% csrf_token %}
+			<h2 class="form-signin-heading text-center">Enter Range</h2>
 			<label for="range" class="sr-only">Range</label>
 			<input class="form-control" type="text" name="range" placeholder="Enter a range: e.g:-6500-6510" autofocus>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">View PDF</button>
 			<br>
 			<div>
-			<a href="{%url 'genpdf'%}"><button class="form-signin btn btn-lg btn-primary btn-block" type="button">Full PDF</button></a>
+			<a href="{%url 'studentPdf'%}"><button class="form-signin btn btn-lg btn-primary btn-block" type="button">Full PDF</button></a>
 		</div>
 		<br>
 		<div>
-			<a href="{%url 'singlestud'%}"><button class="form-signin btn btn-lg btn-primary btn-block" type="button">Single PDF</button></a>
+			<a href="{%url 'singleStudent'%}"><button class="form-signin btn btn-lg btn-primary btn-block" type="button">Single PDF</button></a>
 		</div>
 			
 		</form>
