@@ -1,9 +1,6 @@
 # IdGen
 
-Id Card Generator
+Id Card Generator for College and Schools
 
 http://idgen.pythonanywhere.com/
-
-Username: admin <br>
-Password: qwerty1234
 	
